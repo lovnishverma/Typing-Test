@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+    <title>SKILL TEST WPM Calculator</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	 <link id="favicon" rel="shortcut icon" href="favicon.png" type="image/png"/>
+	  <link rel="apple-touch-icon" sizes="194x194" href="apple-touch-icon.png" type="image/png"/>
+  </head>
+  <style>
+    input[type=text],
+    select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    text-align: center;
+    }
+    button {
+    width: 100%;
+    background-color: #4f85bc;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    }
+    button:hover {
+    background-color: #666;
+    }
+    .main {
+    border-radius: 5px;
+    background-color: #fafafa;
+    padding: 20px;
+    max-width: 500px;
+    height: auto;
+    margin: auto;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    }
+    .dropbtn {
+    background-color: green;
+    color: white;
+    padding: 14px;
+    font-size: 16px;
+    cursor: pointer;
+    }
+    .dropbtn:hover {
+    background-color: brown;
+    }
+    .dropdown {
+    position: relative;
+    display: inline-block;
+    }
+    .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 140px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    }
+    .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    }
+    .dropdown a:hover {
+    background-color: #ddd;
+    }
+    .show {
+    display: block;
+    }
+    .ui-flex-container {
+    display: grid;
+    grid-gap: 0px 5px;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    align-items: center;
+    }
+    .ui-block-elem {
+    font-family: Lato-Light, sans-serif;
+    font-size: 40px;
+    line-height: 40px;
+    min-width: 40px;
+    height: 40px;
+    margin-bottom: 10px;
+    position: relative;
+    }
+    .ui-block-elem-2 {
+    }
+    .ui-block-div {
+    height: 140px;
+    width: 100%;
+    color: #232430;
+    font-family: Lato-Semibold, sans-serif;
+    font-size: 14px;
+    line-height: 17px;
+    padding: 20px 17px;;
+    box-sizing: border-box;
+    text-align: center;
+    flex-grow: 1;
+    display:grid;
+    align-content:center;
+    }
+    .ui-block {
+    border-radius: 12px;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 20px 0px rgba(207, 207, 207, 0.6);
+    margin: 3px;
+    }
+    .abutton {
+    color: grey;
+    padding: 1em 1.5em;
+    text-decoration: none;
+    display:block;
+    text-transform: uppercase;
+    }
+    .abutton:hover {
+    text-decoration: underline;
+    cursor: pointer;
+    }
+    .abutton:active {
+    box-shadow: none;
+    top: 5px;
+    }
+    .wrapper{
+    display: inline-flex;
+    height: 50px;
+    width: auto;
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: 5px;
+    padding: 20px 5px;
+    }
+    .wrapper .option{
+    background: #fff;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 0 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 0 10px;
+    border: 2px solid lightgrey;
+    transition: all 0.3s ease;
+    }
+    .wrapper .option .dot{
+    height: 20px;
+    width: 20px;
+    background: #d9d9d9;
+    border-radius: 50%;
+    position: relative;
+    }
+    .wrapper .option .dot::before{
+    position: absolute;
+    content: "";
+    top: 4px;
+    left: 4px;
+    width: 12px;
+    height: 12px;
+    background: #4f85bc;
+    border-radius: 50%;
+    opacity: 0;
+    transform: scale(1.5);
+    transition: all 0.3s ease;
+    }
+    input[type="radio"]{
+    display: none;
+    }
+    #option-1:checked:checked ~ .option-1,
+    #option-2:checked:checked ~ .option-2{
+    border-color: #4f85bc;
+    background: #4f85bc;
+    }
+    #option-1:checked:checked ~ .option-1 .dot,
+    #option-2:checked:checked ~ .option-2 .dot{
+    background: #fff;
+    }
+    #option-1:checked:checked ~ .option-1 .dot::before,
+    #option-2:checked:checked ~ .option-2 .dot::before{
+    opacity: 1;
+    transform: scale(1);
+    }
+    .wrapper .option span{
+    font-size: 15px;
+    color: #808080;
+    white-space:nowrap;
+    padding: 10px;
+    }
+    #option-1:checked:checked ~ .option-1 span,
+    #option-2:checked:checked ~ .option-2 span{
+    color: #fff;
+    }
+    .main::-webkit-scrollbar {
+    display: none;
+    }
+  </style>
+  <body onload="favTutorial()">
+    <div class="main" style="text-align:center; font-family: Roboto;">
+      <div class="logo" style="background: #4f85bc" >
+              
+      </div>
+			<div style="font-size:20px;color: white;margin: -20px;" > <a class="link" href="https://www.instagram.com/love.illustrations/"> <img src="logo2.svg" alt="logo"> </a></div>
+      <br><br>
+      <div class="wrapper" id="myList">
+
+        <input type="radio" value="mistakes" onchange="favTutorial(this)" name="select" id="option-1" checked>
+        <input type="radio" value="errorstrokes" onchange="favTutorial(this)" name="select" id="option-2">
+        <label for="option-1" onchange="favTutorial(this)" value="mistakes" class="option option-1">
+          <div class="dot"></div>
+          <span>Mistakes</span>
+        </label>
+        <label for="option-2" onchange="favTutorial(this)" value="errorstrokes" class="option option-2">
+          <div class="dot"></div>
+          <span>Error Strokes</span>
+        </label>
+      </div>
+	 <div>
+	 <span style="float:left;color:grey;    padding: 10px 0px;" >Enter total strokes :</span>  
+	  <input type="text" maxlength="4"  onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode 
+        <= 57))" id="inputfield1" />
+		  </div>
+      <div id="misTake" style="display:none;padding:0px">
+        <span style="float:left;color:grey;    padding: 10px 0px;" >Enter mistakes :</span>  <input type="text"  maxlength="3" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode 
+          <= 57))" id="inputfield2" />
+      </div>
+	 
+      <div  id="errorStrokes" style="display:none;padding:0px">
+          <span style="float:left;color:grey;    padding: 10px 0px;" >Enter error strokes :</span> <input type="text" maxlength="3"  onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode 
+          <= 57))" id="inputfield3" />
+     
+	   </div>
+      <button id="firstButton" onclick="compare()">CALCULATE</button>
+      <button id="secondButton" style="display:none" onclick="compare2()">CALCULATE</button>
+	  
+	  
+     
+      <div id="cv" style="background-color:#FAFAFA;padding:10px;">
+	  	<span id="logoc" style="display:none"> 	  
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 199.4 32.7"><defs><style>.cls-1{fill:url(#linear-gradient);}.cls-16,.cls-2,.cls-3,.cls-4,.cls-5{fill:#fff;}.cls-10,.cls-11,.cls-2,.cls-7,.cls-8,.cls-9{isolation:isolate;}.cls-2{opacity:0.11;}.cls-3{stroke:#767576;}.cls-3,.cls-5{stroke-miterlimit:10;stroke-width:0.1px;}.cls-5{stroke:#bbbdbf;}.cls-6{fill:#f2f2f2;}.cls-7{fill:#ee3b24;}.cls-10,.cls-11,.cls-7,.cls-8,.cls-9{opacity:0.68;}.cls-8{fill:#f9a42c;}.cls-9{fill:#74bf44;}.cls-10{fill:#774c9e;}.cls-11{fill:#40c6f3;}.cls-12{opacity:0.49;}.cls-13{fill:#ffcdcc;}.cls-14{fill:url(#linear-gradient-2);}.cls-15{fill:url(#linear-gradient-3);}.cls-16{opacity:0.16;}</style><linearGradient id="linear-gradient" x1="100.15" y1="41.58" x2="100.32" y2="-34.5" gradientTransform="matrix(1, 0, 0, -1, 0, 34)" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#282882"/><stop offset="0.1" stop-color="#2a2c85"/><stop offset="0.2" stop-color="#2f398d"/><stop offset="0.3" stop-color="#384e9a"/><stop offset="0.4" stop-color="#446bac"/><stop offset="0.49" stop-color="#5189bf"/><stop offset="0.6" stop-color="#3b5c99"/><stop offset="0.72" stop-color="#273478"/><stop offset="0.83" stop-color="#191860"/><stop offset="0.93" stop-color="#100651"/><stop offset="1" stop-color="#0d004c"/></linearGradient><linearGradient id="linear-gradient-2" x1="47.51" y1="57.24" x2="49.46" y2="57.24" gradientTransform="translate(0 -38)" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#f69353"/><stop offset="0.5" stop-color="#f37521"/><stop offset="1" stop-color="#d4622a"/></linearGradient><linearGradient id="linear-gradient-3" x1="34.96" y1="57.24" x2="36.91" y2="57.24" xlink:href="#linear-gradient-2"/></defs><path class="cls-1" d="M193.3,32.4H7A6.49,6.49,0,0,1,.5,25.9V-.3H199.9V25.9A6.64,6.64,0,0,1,193.3,32.4Z" transform="translate(-0.5 0.3)"/><path class="cls-2" d="M60.59,5H161.32a5.91,5.91,0,0,1,5.89,6V22.38a5.91,5.91,0,0,1-5.89,6H60.59a5.91,5.91,0,0,1-5.88-6V11A5.91,5.91,0,0,1,60.59,5Z" transform="translate(-0.5 0.3)"/><path class="cls-3" d="M42.78,12.48a2.32,2.32,0,0,0,.23-.69,1.72,1.72,0,0,1-.81.23c-.24,0-.59-.23-.82-.23,0,.11.35.58.23.69s-1.74,3.85-2.56,5.71a.74.74,0,0,0,.7,1l4.54-.11a.75.75,0,0,0,.7-.94A47.39,47.39,0,0,0,42.78,12.48Z" transform="translate(-0.5 0.3)"/><path class="cls-4" d="M37.3,20.41V21h-.58v-.35c0-.11,0-.11-.12-.11h-.81c-.12,0-.12,0-.12.11v.7c0,.12,0,.12.12.12H37a.3.3,0,0,1,.35.35v1.28a.31.31,0,0,1-.35.35H35.44a.31.31,0,0,1-.35-.35v-.7h.58v.35c0,.12,0,.12.12.12h.81c.12,0,.12,0,.12-.12V22c0-.12,0-.12-.12-.12H35.44a.3.3,0,0,1-.35-.35V20.29a.31.31,0,0,1,.35-.35H37A.53.53,0,0,1,37.3,20.41Z" transform="translate(-0.5 0.3)"/><path class="cls-4" d="M39.4,22.74h-1l-.12.81h-.58l1.05-3.49h.7l1.05,3.49h-.58Zm-.12-.58-.35-1.4-.35,1.4Z" transform="translate(-0.5 0.3)"/><path class="cls-4" d="M42.9,19.94v3.5h-.7l-1.05-2.33v2.33h-.59v-3.5h.7l1.05,2.33V19.94Z" transform="translate(-0.5 0.3)"/><path class="cls-4" d="M44.18,20.29v3.26h-.59V20.64c0-.11,0-.11-.11-.11h0v-.59h.46C44.06,19.94,44.18,20.06,44.18,20.29Z" transform="translate(-0.5 0.3)"/><path class="cls-4" d="M46.86,20.41v1.28a.31.31,0,0,1-.35.35H45.34c-.11,0-.11,0-.11.12V23h1v-.46h.59v1H44.64V21.81a.31.31,0,0,1,.35-.35h1.17c.11,0,.11,0,.11-.12v-.7c0-.11,0-.11-.11-.11h-.82c-.11,0-.11,0-.11.11V21h-.59v-.58a.31.31,0,0,1,.35-.35h1.52C46.74,19.94,46.86,20.18,46.86,20.41Z" transform="translate(-0.5 0.3)"/><path class="cls-4" d="M49.65,20.41v1.28a.31.31,0,0,1-.35.35H48.14c-.12,0-.12,0-.12.12V23h1v-.46h.58v1H47.44V21.81a.31.31,0,0,1,.35-.35H49c.12,0,.12,0,.12-.12v-.7c0-.11,0-.11-.12-.11h-.81c-.12,0-.12,0-.12.11V21h-.58v-.58a.31.31,0,0,1,.35-.35H49.3C49.42,19.94,49.65,20.18,49.65,20.41Z" transform="translate(-0.5 0.3)"/><path class="cls-5" d="M42.78,12.48a2.32,2.32,0,0,0,.23-.69,1.72,1.72,0,0,1-.81.23c-.24,0-.59-.23-.82-.23,0,.11.35.58.23.69s-1.74,3.85-2.56,5.71a.74.74,0,0,0,.7,1l4.54-.11a.75.75,0,0,0,.7-.94A56.39,56.39,0,0,0,42.78,12.48Z" transform="translate(-0.5 0.3)"/><path class="cls-6" d="M39.75,19.13h0Z" transform="translate(-0.5 0.3)"/><path class="cls-6" d="M40.68,17c.12,0,.23.12.47.12a.88.88,0,0,1,.58-1.29,1.09,1.09,0,0,1,.58-.11c0-.24-.23-.35-.46-.47a2.23,2.23,0,0,0-1.05-.46c-.12.11-.12.34-.24.46s-.11.23-.11.35-.12.23-.24.35a9.11,9.11,0,0,1-.58,1.17A1.43,1.43,0,0,1,40.68,17Z" transform="translate(-0.5 0.3)"/><path class="cls-7" d="M40.68,17c.12,0,.23.12.47.12a.88.88,0,0,1,.58-1.29,1.09,1.09,0,0,1,.58-.11c0-.24-.23-.35-.46-.47a2.23,2.23,0,0,0-1.05-.46c-.12.11-.12.34-.24.46s-.11.23-.11.35-.12.23-.24.35a9.11,9.11,0,0,1-.58,1.17A1.43,1.43,0,0,1,40.68,17Z" transform="translate(-0.5 0.3)"/><path class="cls-6" d="M42.2,15.75v.35a1.5,1.5,0,0,1-.47,1.75V18c.12,0,.12.12.23.12a1.54,1.54,0,0,1,.7.11.89.89,0,0,1,.24-.46,1.05,1.05,0,0,1,.81-.35,2.48,2.48,0,0,1,.93-.12c-.11-.11-.11-.35-.23-.46l-.7-.35A1.32,1.32,0,0,0,42.2,15.75Z" transform="translate(-0.5 0.3)"/><path class="cls-8" d="M42.2,15.75v.35a1.5,1.5,0,0,1-.47,1.75V18c.12,0,.12.12.23.12a1.54,1.54,0,0,1,.7.11.89.89,0,0,1,.24-.46,1.05,1.05,0,0,1,.81-.35,2.48,2.48,0,0,1,.93-.12c-.11-.11-.11-.35-.23-.46l-.7-.35A1.32,1.32,0,0,0,42.2,15.75Z" transform="translate(-0.5 0.3)"/><path class="cls-6" d="M41.85,17.85a1.74,1.74,0,0,0,.46-1.75v-.35c-.23,0-.35.11-.58.11a.88.88,0,0,0-.58,1.29C41.38,17.38,41.73,17.5,41.85,17.85Z" transform="translate(-0.5 0.3)"/><path class="cls-7" d="M41.85,17.85a1.74,1.74,0,0,0,.46-1.75v-.35c-.23,0-.35.11-.58.11a.88.88,0,0,0-.58,1.29C41.38,17.38,41.73,17.5,41.85,17.85Z" transform="translate(-0.5 0.3)"/><path class="cls-8" d="M41.85,17.85a1.74,1.74,0,0,0,.46-1.75v-.35c-.23,0-.35.11-.58.11a.88.88,0,0,0-.58,1.29C41.38,17.38,41.73,17.5,41.85,17.85Z" transform="translate(-0.5 0.3)"/><path class="cls-6" d="M43.36,18.54h0c0,.12.12.24.12.35s.23.12.35.24h.58a.75.75,0,0,0,.7-.94,1.57,1.57,0,0,1-.23-.69A2.53,2.53,0,0,1,43.36,18.54Z" transform="translate(-0.5 0.3)"/><path class="cls-9" d="M43.36,18.54h0c0,.12.12.24.12.35s.23.12.35.24h.58a.75.75,0,0,0,.7-.94,1.57,1.57,0,0,1-.23-.69A2.53,2.53,0,0,1,43.36,18.54Z" transform="translate(-0.5 0.3)"/><path class="cls-6" d="M43.71,17.26a1.05,1.05,0,0,0-.81.35.62.62,0,0,0-.24.47,1.08,1.08,0,0,1,.58.46h0a1.8,1.8,0,0,0,1.4-1.16c0-.12-.11-.12-.11-.23A2.78,2.78,0,0,0,43.71,17.26Z" transform="translate(-0.5 0.3)"/><path class="cls-8" d="M43.71,17.26a1.05,1.05,0,0,0-.81.35.62.62,0,0,0-.24.47,1.08,1.08,0,0,1,.58.46h0a1.8,1.8,0,0,0,1.4-1.16c0-.12-.11-.12-.11-.23A2.78,2.78,0,0,0,43.71,17.26Z" transform="translate(-0.5 0.3)"/><path class="cls-9" d="M43.71,17.26a1.05,1.05,0,0,0-.81.35.62.62,0,0,0-.24.47,1.08,1.08,0,0,1,.58.46h0a1.8,1.8,0,0,0,1.4-1.16c0-.12-.11-.12-.11-.23A2.78,2.78,0,0,0,43.71,17.26Z" transform="translate(-0.5 0.3)"/><path class="cls-6" d="M40.1,19.13c-.23-.47-.35-.94.11-1.17l.12-.11L40,17.5a.86.86,0,0,1-.46-.24,6.93,6.93,0,0,1-.35.82.73.73,0,0,0,.35.93h.35Z" transform="translate(-0.5 0.3)"/><path class="cls-10" d="M40.1,19.13c-.23-.47-.35-.94.11-1.17l.12-.11L40,17.5a.86.86,0,0,1-.46-.24,6.93,6.93,0,0,1-.35.82.73.73,0,0,0,.35.93h.35Z" transform="translate(-0.5 0.3)"/><path class="cls-6" d="M41.5,17.73c-.12-.12-.12-.23-.24-.35s-.11-.12-.11-.23-.24-.12-.47-.12a1.43,1.43,0,0,0-1,.12.11.11,0,0,1-.11.11.58.58,0,0,0,.46.24l.35.35A3.51,3.51,0,0,1,41.5,17.73Z" transform="translate(-0.5 0.3)"/><path class="cls-7" d="M41.5,17.73c-.12-.12-.12-.23-.24-.35s-.11-.12-.11-.23-.24-.12-.47-.12a1.43,1.43,0,0,0-1,.12.11.11,0,0,1-.11.11.58.58,0,0,0,.46.24l.35.35A3.51,3.51,0,0,1,41.5,17.73Z" transform="translate(-0.5 0.3)"/><path class="cls-10" d="M41.5,17.73c-.12-.12-.12-.23-.24-.35s-.11-.12-.11-.23-.24-.12-.47-.12a1.43,1.43,0,0,0-1,.12.11.11,0,0,1-.11.11.58.58,0,0,0,.46.24l.35.35A3.51,3.51,0,0,1,41.5,17.73Z" transform="translate(-0.5 0.3)"/><path class="cls-6" d="M41.85,17.85Z" transform="translate(-0.5 0.3)"/><path class="cls-8" d="M41.85,17.85Z" transform="translate(-0.5 0.3)"/><path class="cls-10" d="M41.85,17.85Z" transform="translate(-0.5 0.3)"/><path class="cls-6" d="M41.5,17.73a.43.43,0,0,1,.35.12h0a1.2,1.2,0,0,0-.7-.59c0,.12.11.12.11.24S41.38,17.61,41.5,17.73Z" transform="translate(-0.5 0.3)"/><path class="cls-7" d="M41.5,17.73a.43.43,0,0,1,.35.12h0a1.2,1.2,0,0,0-.7-.59c0,.12.11.12.11.24S41.38,17.61,41.5,17.73Z" transform="translate(-0.5 0.3)"/><path class="cls-8" d="M41.5,17.73a.43.43,0,0,1,.35.12h0a1.2,1.2,0,0,0-.7-.59c0,.12.11.12.11.24S41.38,17.61,41.5,17.73Z" transform="translate(-0.5 0.3)"/><path class="cls-10" d="M41.5,17.73a.43.43,0,0,1,.35.12h0a1.2,1.2,0,0,0-.7-.59c0,.12.11.12.11.24S41.38,17.61,41.5,17.73Z" transform="translate(-0.5 0.3)"/><path class="cls-6" d="M41.85,18.54a1.21,1.21,0,0,1-.47.59h1.75a.43.43,0,0,1-.12-.35A1.26,1.26,0,0,1,41.85,18.54Z" transform="translate(-0.5 0.3)"/><path class="cls-11" d="M41.85,18.54a1.21,1.21,0,0,1-.47.59h1.75a.43.43,0,0,1-.12-.35A1.26,1.26,0,0,1,41.85,18.54Z" transform="translate(-0.5 0.3)"/><path class="cls-6" d="M41.85,18.54a1.19,1.19,0,0,0,1,.24v-.12a1.23,1.23,0,0,1-.12-.58,1.44,1.44,0,0,0-.7-.12c-.12,0-.12-.11-.23-.11v.69Z" transform="translate(-0.5 0.3)"/><path class="cls-8" d="M41.85,18.54a1.19,1.19,0,0,0,1,.24v-.12a1.23,1.23,0,0,1-.12-.58,1.44,1.44,0,0,0-.7-.12c-.12,0-.12-.11-.23-.11v.69Z" transform="translate(-0.5 0.3)"/><path class="cls-11" d="M41.85,18.54a1.19,1.19,0,0,0,1,.24v-.12a1.23,1.23,0,0,1-.12-.58,1.44,1.44,0,0,0-.7-.12c-.12,0-.12-.11-.23-.11v.69Z" transform="translate(-0.5 0.3)"/><path class="cls-6" d="M43.48,18.89a.43.43,0,0,0-.12-.35c-.12.12-.35.12-.46.24s.11.23.11.35h.7C43.71,19,43.59,19,43.48,18.89Z" transform="translate(-0.5 0.3)"/><path class="cls-9" d="M43.48,18.89a.43.43,0,0,0-.12-.35c-.12.12-.35.12-.46.24s.11.23.11.35h.7C43.71,19,43.59,19,43.48,18.89Z" transform="translate(-0.5 0.3)"/><path class="cls-11" d="M43.48,18.89a.43.43,0,0,0-.12-.35c-.12.12-.35.12-.46.24s.11.23.11.35h.7C43.71,19,43.59,19,43.48,18.89Z" transform="translate(-0.5 0.3)"/><path class="cls-6" d="M42.9,18.66h0c.23.12.34,0,.46-.12h0a1.16,1.16,0,0,0-.58-.46C42.66,18.19,42.78,18.43,42.9,18.66Z" transform="translate(-0.5 0.3)"/><path class="cls-8" d="M42.9,18.66h0c.23.12.34,0,.46-.12h0a1.16,1.16,0,0,0-.58-.46C42.66,18.19,42.78,18.43,42.9,18.66Z" transform="translate(-0.5 0.3)"/><path class="cls-9" d="M42.9,18.66h0c.23.12.34,0,.46-.12h0a1.16,1.16,0,0,0-.58-.46C42.66,18.19,42.78,18.43,42.9,18.66Z" transform="translate(-0.5 0.3)"/><path class="cls-11" d="M42.9,18.66h0c.23.12.34,0,.46-.12h0a1.16,1.16,0,0,0-.58-.46C42.66,18.19,42.78,18.43,42.9,18.66Z" transform="translate(-0.5 0.3)"/><path class="cls-6" d="M41.85,18.54c-.12,0-.12-.11,0,0-.24-.35-.24-.46-.24-.58H41.5a1.07,1.07,0,0,1-1.17-.11s-.12,0-.12.11a.8.8,0,0,0-.11,1.17h1.28A1.21,1.21,0,0,0,41.85,18.54Z" transform="translate(-0.5 0.3)"/><path class="cls-10" d="M41.85,18.54c-.12,0-.12-.11,0,0-.24-.35-.24-.46-.24-.58H41.5a1.07,1.07,0,0,1-1.17-.11s-.12,0-.12.11a.8.8,0,0,0-.11,1.17h1.28A1.21,1.21,0,0,0,41.85,18.54Z" transform="translate(-0.5 0.3)"/><path class="cls-11" d="M41.85,18.54c-.12,0-.12-.11,0,0-.24-.35-.24-.46-.24-.58H41.5a1.07,1.07,0,0,1-1.17-.11s-.12,0-.12.11a.8.8,0,0,0-.11,1.17h1.28A1.21,1.21,0,0,0,41.85,18.54Z" transform="translate(-0.5 0.3)"/><path class="cls-6" d="M41.5,18h0c0-.11,0-.11-.12-.23a1.52,1.52,0,0,0-1.05.12A1.07,1.07,0,0,0,41.5,18Z" transform="translate(-0.5 0.3)"/><path class="cls-7" d="M41.5,18h0c0-.11,0-.11-.12-.23a1.52,1.52,0,0,0-1.05.12A1.07,1.07,0,0,0,41.5,18Z" transform="translate(-0.5 0.3)"/><path class="cls-10" d="M41.5,18h0c0-.11,0-.11-.12-.23a1.52,1.52,0,0,0-1.05.12A1.07,1.07,0,0,0,41.5,18Z" transform="translate(-0.5 0.3)"/><path class="cls-11" d="M41.5,18h0c0-.11,0-.11-.12-.23a1.52,1.52,0,0,0-1.05.12A1.07,1.07,0,0,0,41.5,18Z" transform="translate(-0.5 0.3)"/><path class="cls-6" d="M41.61,18h0a.3.3,0,0,0,.12.47l.12.11a.72.72,0,0,0,.11-.46v-.23h-.11C41.73,17.85,41.61,17.85,41.61,18Z" transform="translate(-0.5 0.3)"/><path class="cls-8" d="M41.61,18h0a.3.3,0,0,0,.12.47l.12.11a.72.72,0,0,0,.11-.46v-.23h-.11C41.73,17.85,41.61,17.85,41.61,18Z" transform="translate(-0.5 0.3)"/><path class="cls-10" d="M41.61,18h0a.3.3,0,0,0,.12.47l.12.11a.72.72,0,0,0,.11-.46v-.23h-.11C41.73,17.85,41.61,17.85,41.61,18Z" transform="translate(-0.5 0.3)"/><path class="cls-11" d="M41.61,18h0a.3.3,0,0,0,.12.47l.12.11a.72.72,0,0,0,.11-.46v-.23h-.11C41.73,17.85,41.61,17.85,41.61,18Z" transform="translate(-0.5 0.3)"/><path class="cls-6" d="M41.5,17.73a.11.11,0,0,0,.11.12.12.12,0,0,0,.12-.12A.15.15,0,0,1,41.5,17.73Z" transform="translate(-0.5 0.3)"/><path class="cls-7" d="M41.5,17.73a.11.11,0,0,0,.11.12.12.12,0,0,0,.12-.12A.15.15,0,0,1,41.5,17.73Z" transform="translate(-0.5 0.3)"/><path class="cls-8" d="M41.5,17.73a.11.11,0,0,0,.11.12.12.12,0,0,0,.12-.12A.15.15,0,0,1,41.5,17.73Z" transform="translate(-0.5 0.3)"/><path class="cls-10" d="M41.5,17.73a.11.11,0,0,0,.11.12.12.12,0,0,0,.12-.12A.15.15,0,0,1,41.5,17.73Z" transform="translate(-0.5 0.3)"/><path class="cls-11" d="M41.5,17.73a.11.11,0,0,0,.11.12.12.12,0,0,0,.12-.12A.15.15,0,0,1,41.5,17.73Z" transform="translate(-0.5 0.3)"/><g class="cls-12"><path class="cls-13" d="M42.31,9.22c-.81.47,0,1.17.12,1.75a.56.56,0,0,1-.23.7c.35-.47,0-.82-.24-1.28s-.35-.93.35-1.17Z" transform="translate(-0.5 0.3)"/></g><g class="cls-12"><path class="cls-13" d="M42.9,10c-.47.46.23.93.11,1.4,0,.11-.11.11-.11.23a.23.23,0,0,0,0-.35c-.12-.47-.59-1.05,0-1.28Z" transform="translate(-0.5 0.3)"/></g><g class="cls-12"><path class="cls-13" d="M41.73,10.27c-.35.23-.35.47-.12.7s.47.7,0,.82c.24-.35,0-.47-.23-.82s-.12-.7.35-.7Z" transform="translate(-0.5 0.3)"/></g><path class="cls-14" d="M47.56,19.24h0a.25.25,0,0,0,.23.24h1.63a.25.25,0,0,0,.23-.24h0a.25.25,0,0,0-.23-.23H47.79C47.56,19,47.56,19.13,47.56,19.24Z" transform="translate(-0.5 0.3)"/><path class="cls-15" d="M35,19.24h0a.26.26,0,0,0,.23.24h1.64a.26.26,0,0,0,.23-.24h0a.26.26,0,0,0-.23-.23H35.2A.26.26,0,0,0,35,19.24Z" transform="translate(-0.5 0.3)"/><path class="cls-2" d="M34.18,5.14h127a5.67,5.67,0,0,1,5.88,5.47V22.93a5.67,5.67,0,0,1-5.88,5.47h-127a5.68,5.68,0,0,1-5.89-5.47V10.61A5.77,5.77,0,0,1,34.18,5.14Z" transform="translate(-0.5 0.3)"/><path class="cls-4" d="M91.71,22.1a1.08,1.08,0,0,0,.55.16c.3,0,.45-.15.45-.34s-.12-.31-.43-.42-.61-.38-.61-.65a.71.71,0,0,1,.79-.68,1.11,1.11,0,0,1,.57.15l-.11.3a.85.85,0,0,0-.47-.13c-.24,0-.38.14-.38.31s.14.28.44.39.6.35.6.69-.31.69-.86.69a1.24,1.24,0,0,1-.64-.16Z" transform="translate(-0.5 0.3)"/><path class="cls-4" d="M94.92,22.52l0-.29h0a.87.87,0,0,1-.7.35.66.66,0,0,1-.71-.66c0-.56.5-.86,1.39-.86v0a.48.48,0,0,0-.53-.53,1.16,1.16,0,0,0-.59.17l-.1-.27a1.39,1.39,0,0,1,.76-.21c.7,0,.87.48.87.94V22a3,3,0,0,0,0,.55Zm-.06-1.17c-.46,0-1,.07-1,.52a.37.37,0,0,0,.4.4.56.56,0,0,0,.55-.39.31.31,0,0,0,0-.13Z" transform="translate(-0.5 0.3)"/><path class="cls-4" d="M95.93,20.85a5.92,5.92,0,0,0,0-.62h.37l0,.38h0a.84.84,0,0,1,.76-.44c.31,0,.81.19.81,1v1.37h-.42V21.2c0-.37-.14-.68-.53-.68a.59.59,0,0,0-.56.43.54.54,0,0,0,0,.19v1.38h-.42Z" transform="translate(-0.5 0.3)"/><path class="cls-4" d="M99.34,19.83h0l-.54.29-.08-.32.68-.36h.35v3.08h-.4Z" transform="translate(-0.5 0.3)"/><path class="cls-4" d="M100.87,22.52v-.25l.33-.32c.78-.75,1.14-1.15,1.14-1.62a.55.55,0,0,0-.61-.6,1,1,0,0,0-.65.26l-.14-.29a1.38,1.38,0,0,1,.88-.32.87.87,0,0,1,.94.9c0,.57-.41,1-1.06,1.66l-.25.23h1.39v.34Z" transform="translate(-0.5 0.3)"/><path class="cls-4" d="M103.3,22.52v-.25l.33-.32c.79-.75,1.14-1.15,1.15-1.62a.55.55,0,0,0-.61-.6,1.05,1.05,0,0,0-.66.26l-.13-.29a1.33,1.33,0,0,1,.87-.32.87.87,0,0,1,1,.9c0,.57-.42,1-1.07,1.66l-.24.23h1.38v.34Z" transform="translate(-0.5 0.3)"/><path class="cls-4" d="M105.77,22.28a.28.28,0,0,1,.28-.3.27.27,0,0,1,.28.3.28.28,0,1,1-.56,0Z" transform="translate(-0.5 0.3)"/><path class="cls-4" d="M107,20.23l.3,1.16c.07.26.13.5.17.73h0c0-.23.13-.48.2-.72l.38-1.17h.35l.35,1.14c.09.28.16.52.21.75h0a6.56,6.56,0,0,1,.18-.74l.33-1.15h.41l-.74,2.29h-.38l-.35-1.09c-.08-.26-.15-.49-.21-.76h0a5.62,5.62,0,0,1-.21.76l-.37,1.09h-.38l-.69-2.29Z" transform="translate(-0.5 0.3)"/><path class="cls-4" d="M110.53,21.45a.74.74,0,0,0,.79.8,1.4,1.4,0,0,0,.63-.12l.07.3a1.91,1.91,0,0,1-.76.14,1.06,1.06,0,0,1-1.13-1.16,1.12,1.12,0,0,1,1.08-1.24,1,1,0,0,1,1,1.09.84.84,0,0,1,0,.19Zm1.22-.3a.6.6,0,0,0-.58-.68.7.7,0,0,0-.64.68Z" transform="translate(-0.5 0.3)"/><path class="cls-4" d="M112.65,22.52c0-.15,0-.39,0-.59V19.15h.42V20.6h0a.84.84,0,0,1,.78-.43c.57,0,1,.48,1,1.18a1.09,1.09,0,0,1-1,1.23.82.82,0,0,1-.77-.44h0v.38Zm.44-.92a.68.68,0,0,0,0,.15.64.64,0,0,0,.62.49c.44,0,.7-.35.7-.88s-.24-.85-.68-.85a.67.67,0,0,0-.64.51.79.79,0,0,0,0,.17Z" transform="translate(-0.5 0.3)"/><path class="cls-4" d="M115.16,22.28a.28.28,0,0,1,.29-.3.3.3,0,0,1,0,.6A.28.28,0,0,1,115.16,22.28Z" transform="translate(-0.5 0.3)"/><path class="cls-4" d="M117.51,22.52l0-.29h0a.88.88,0,0,1-.71.35.66.66,0,0,1-.7-.66c0-.56.5-.86,1.38-.86v0a.47.47,0,0,0-.52-.53,1.2,1.2,0,0,0-.6.17l-.09-.27a1.35,1.35,0,0,1,.75-.21c.71,0,.88.48.88.94V22a4.44,4.44,0,0,0,0,.55Zm-.06-1.17c-.45,0-1,.07-1,.52a.37.37,0,0,0,.39.4.58.58,0,0,0,.56-.39.59.59,0,0,0,0-.13Z" transform="translate(-0.5 0.3)"/><path class="cls-4" d="M118.53,21c0-.3,0-.54,0-.75h.38v.39h0a.92.92,0,0,1,.82-.45,1,1,0,0,1,1,1.17c0,.83-.5,1.24-1,1.24a.81.81,0,0,1-.71-.37h0v1.25h-.41Zm.41.61a.88.88,0,0,0,0,.17.65.65,0,0,0,.63.49c.44,0,.7-.36.7-.89s-.25-.85-.69-.85A.67.67,0,0,0,119,21a1.22,1.22,0,0,0,0,.17Z" transform="translate(-0.5 0.3)"/><path class="cls-4" d="M121.23,21c0-.3,0-.54,0-.75h.38v.39h0a.93.93,0,0,1,.82-.45,1,1,0,0,1,1,1.17c0,.83-.5,1.24-1,1.24a.82.82,0,0,1-.71-.37h0v1.25h-.41Zm.41.61a.88.88,0,0,0,0,.17.65.65,0,0,0,.63.49c.44,0,.7-.36.7-.89s-.25-.85-.69-.85a.67.67,0,0,0-.63.51,1.22,1.22,0,0,0,0,.17Z" transform="translate(-0.5 0.3)"/><path class="cls-4" d="M72.7,11.81v2h-1V9h1v1.91h1.77V9h1v4.77h-1v-2Z" transform="translate(-0.5 0.3)"/><path class="cls-4" d="M77.91,12h-.7V13.8h-.95V9h1.65c1.25,0,1.87.5,1.87,1.5S79.16,12,77.91,12Zm0-.79c.62,0,.92-.24.92-.72s-.3-.71-.92-.71h-.7v1.43Z" transform="translate(-0.5 0.3)"/><path class="cls-4" d="M83.28,10a9.16,9.16,0,0,0-1.41-.15c-.52,0-.78.16-.78.49v.22a.43.43,0,0,0,.34.4l1.06.2a1.18,1.18,0,0,1,1.06,1.28v.2c0,.81-.58,1.22-1.62,1.22a8.87,8.87,0,0,1-1.74-.23l.11-.72a12.76,12.76,0,0,0,1.59.13c.46,0,.69-.14.7-.4v-.2a.44.44,0,0,0-.4-.49l-1.06-.2a1.14,1.14,0,0,1-1-1.18V10.3c0-.88.58-1.31,1.74-1.31a6,6,0,0,1,1.52.25Z" transform="translate(-0.5 0.3)"/><path class="cls-4" d="M87.17,10a9.16,9.16,0,0,0-1.41-.15c-.52,0-.78.16-.78.49v.22a.41.41,0,0,0,.33.4l1.07.2a1.17,1.17,0,0,1,1.05,1.28v.2c0,.81-.57,1.22-1.62,1.22a8.87,8.87,0,0,1-1.73-.23l.11-.72a12.76,12.76,0,0,0,1.59.13c.46,0,.69-.14.7-.4v-.2a.44.44,0,0,0-.4-.49L85,11.71a1.14,1.14,0,0,1-1-1.18V10.3C84,9.42,84.6,9,85.76,9a6,6,0,0,1,1.52.25Z" transform="translate(-0.5 0.3)"/><path class="cls-4" d="M87.88,11.4c0-1.6.6-2.39,1.81-2.39a11,11,0,0,1,1.64.18l-.1.73a12,12,0,0,0-1.54-.13c-.57,0-.86.54-.86,1.61s.29,1.6.86,1.6a12,12,0,0,0,1.54-.13l.1.73a11,11,0,0,1-1.64.18C88.48,13.78,87.88,13,87.88,11.4Z" transform="translate(-0.5 0.3)"/><path class="cls-4" d="M95.47,13.6q-.07.18-.21.18h-.75c-.09,0-.15-.06-.2-.18L93.27,9h1l.66,3.7L95.7,9.2c0-.12.12-.19.2-.19h.75c.1,0,.17.07.21.19l.82,3.51L98.34,9h1l-1,4.59q-.08.18-.21.18H97.3c-.09,0-.16-.06-.2-.18l-.82-3.51Z" transform="translate(-0.5 0.3)"/><path class="cls-4" d="M101.42,12h-.71V13.8h-.95V9h1.66q1.86,0,1.86,1.5C103.28,11.52,102.66,12,101.42,12Zm0-.79c.61,0,.91-.24.91-.72s-.3-.71-.91-.71h-.71v1.43Z" transform="translate(-0.5 0.3)"/><path class="cls-4" d="M106.05,13.8a.37.37,0,0,1-.38-.21l-.92-3.07V13.8h-1V9.16c0-.11,0-.16.1-.16h1a.27.27,0,0,1,.28.16l1.09,3.6,1.09-3.6a.26.26,0,0,1,.27-.16h1c.06,0,.09.05.09.16V13.8h-1V10.52l-.91,3.07a.38.38,0,0,1-.38.21Z" transform="translate(-0.5 0.3)"/><path class="cls-4" d="M111,11.4c0-1.6.6-2.39,1.81-2.39a11,11,0,0,1,1.64.18l-.1.73a12,12,0,0,0-1.54-.13c-.57,0-.86.54-.86,1.61s.29,1.6.86,1.6a12,12,0,0,0,1.54-.13l.1.73a11,11,0,0,1-1.64.18C111.55,13.78,111,13,111,11.4Z" transform="translate(-0.5 0.3)"/><path class="cls-4" d="M115.91,12.74l-.31,1h-1l1.49-4.58c.05-.12.12-.19.21-.19h.75c.09,0,.16.07.2.19l1.49,4.58h-1l-.31-1Zm.24-.78h1.12l-.56-1.87Z" transform="translate(-0.5 0.3)"/><path class="cls-4" d="M120.13,9v3.57c0,.27.13.4.37.4h1.74v.79h-2a.94.94,0,0,1-1.06-1.06V9Z" transform="translate(-0.5 0.3)"/><path class="cls-4" d="M122.6,11.4c0-1.6.6-2.39,1.81-2.39a11,11,0,0,1,1.64.18l-.1.73a12,12,0,0,0-1.54-.13c-.57,0-.86.54-.86,1.61s.29,1.6.86,1.6a12,12,0,0,0,1.54-.13l.1.73a11,11,0,0,1-1.64.18C123.2,13.78,122.6,13,122.6,11.4Z" transform="translate(-0.5 0.3)"/><path class="cls-4" d="M127.6,9v2.9c0,.71.26,1.07.79,1.07h.13c.54,0,.82-.36.82-1.07V9h.95v2.9q0,1.89-1.77,1.89h-.13q-1.74,0-1.74-1.89V9Z" transform="translate(-0.5 0.3)"/><path class="cls-4" d="M132,9v3.57c0,.27.12.4.37.4h1.74v.79h-2A.94.94,0,0,1,131,12.71V9Z" transform="translate(-0.5 0.3)"/><path class="cls-4" d="M135.51,12.74l-.31,1h-1l1.49-4.58c0-.12.11-.19.21-.19h.75c.08,0,.15.07.2.19l1.49,4.58h-1l-.31-1Zm.24-.78h1.12l-.56-1.87Z" transform="translate(-0.5 0.3)"/><path class="cls-4" d="M141.86,9v.82h-1.3v3.95h-.95V9.83H138.2V9Z" transform="translate(-0.5 0.3)"/><path class="cls-4" d="M144.09,13.77H144q-1.89,0-1.89-2.16v-.45c0-1.43.63-2.15,1.89-2.15h.11c1.27,0,1.9.72,1.9,2.15v.45C146,13.05,145.36,13.77,144.09,13.77ZM143,11.16v.45c0,.89.32,1.34.95,1.34h.11c.64,0,.95-.45.95-1.34v-.45c0-.89-.31-1.33-.95-1.33H144C143.35,9.83,143,10.27,143,11.16Z" transform="translate(-0.5 0.3)"/><path class="cls-4" d="M148.46,12h-.84V13.8h-1V9h1.65c1.24,0,1.87.5,1.87,1.5a1.32,1.32,0,0,1-.82,1.34l.91,2h-1Zm-.14-.79c.61,0,.92-.24.92-.72s-.31-.71-.92-.71h-.7v1.43Z" transform="translate(-0.5 0.3)"/><rect class="cls-16" x="77.26" y="17.52" width="63.12" height="8.09" rx="3.76"/></svg>
+</span>
+	  <div id="mistakescontainer" style="display:none;" class="ui-flex-container">
+        <div class="ui-block ui-block-div ">
+          <div class="ui-block-elem" style="color: #f57f17">
+            <div id="strokes">0</div>
+          </div>
+          <div class="ui-block-elem-2" style="color: #f57f17" id=""></div>
+          <hr style="opacity: .05;;width:100%">
+          <div class="">Total Strokes</div>
+        </div>
+        <div class="ui-block ui-block-div ">
+          <div class="ui-block-elem" style="color: #A93737">
+            <div id="words">0</div>
+          </div>
+          <div class="ui-block-elem-2" style="color: #A93737" id="wordsfromstrokes"></div>
+          <hr style="opacity: .05;;width:100%">
+          <div class="">Words</div>
+        </div>
+        <div class="ui-block ui-block-div ">
+          <div class="ui-block-elem " style="color: #F15151;">
+            <div id="mistakes">0</div>
+          </div>
+          <hr style="opacity: .05;;width:100%">
+          <div class="">Mistakes</div>
+        </div>
+		 <div class="ui-block ui-block-div ">
+          <div class="ui-block-elem " style="color: #0EAE8A;">
+            <span id="accuracy1">0</span><span style="font-size: 10px;font-weight: bold;">%</span>
+          </div>
+		    <div class="ui-block-elem-2" style="color: #0EAE8A;white-space: nowrap;margin: 0px -10px;" id="accuracy1bottom"></div>
+          <hr style="opacity: .05;;width:100%">
+          <div class="">Accuracy</div>
+        </div>
+        <div class="ui-block ui-block-div ">
+          <div class="ui-block-elem" style="color: #41ADDA">
+            <div id="percentage">0</div>
+          </div>
+          <div class="ui-block-elem-2" style="color: #41ADDA" id="mistakespercentage"></div>
+          <hr style="opacity: .05;;width:100%">
+          <div class="">Mistakes Exempted</div>
+        </div>
+        <div class="ui-block ui-block-div ">
+          <div class="ui-block-elem " style="color: #F15151">
+            <div id="leftmistakes">0</div>
+          </div>
+          <div class="ui-block-elem-2" style="color: #F15151" id="leftmistakesbottom"></div>
+          <hr style="opacity: .05;;width:100%">
+          <div class="">Left Mistakes</div>
+        </div>
+        <div class="ui-block ui-block-div ">
+          <div class="ui-block-elem" style="color: #CE7E0C">
+            <div id="penalty">0</div>
+          </div>
+          <div class="ui-block-elem-2" style="color: #CE7E0C" id="penaltybottom"></div>
+          <hr style="opacity: .05;;width:100%">
+          <div class="">Penalty</div>
+        </div>
+        <div class="ui-block ui-block-div ">
+          <div class="ui-block-elem " style="color:#0EAE8A ">
+            <div id="leftwords">0</div>
+          </div>
+          <div class="ui-block-elem-2" style="color:#0EAE8A" id="leftwordsbottom"></div>
+          <hr style="opacity: .05;;width:100%">
+          <div class="">Words Left</div>
+        </div>
+        <div class="ui-block ui-block-div ">
+          <div class="ui-block-elem" style="color:#9e9d24">
+            <div id="netspeedmain">0</div>
+          </div>
+          <div class="ui-block-elem-2" style="color:#9e9d24" id="netspeedmainbottom"></div>
+          <hr style="opacity: .05;;width:100%">
+          <div class="">Net Speed</div>
+        </div>
+        <div class="ui-block ui-block-div ">
+          <div class="ui-block-elem " style="color:#546e7a ">
+            <span id="netspeed">0</span><span style="font-size: 10px;font-weight: bold;">WPM</span>
+          </div>
+          <div id="qualify" style="white-space:nowrap"></div>
+          <hr style="opacity: .05;;width:100%">
+          <div>Typing Speed</div>
+        </div>
+		 <div></div> <div></div><div></div>
+		
+		<button style="display:block" id="download" onclick="ss()">Download</button>
+      </div>
+      <div id="errorstrokescontainer" style="display:none;" class="ui-flex-container">
+        <div class="ui-block ui-block-div ">
+          <div class="ui-block-elem" style="color: #41ADDA">
+            <div id="totalstrokes">0</div>
+          </div>
+          <div class="ui-block-elem-2" style="color: #41ADDA" id=""></div>
+          <hr style="opacity: .05;;width:100%">
+          <div class="">Total strokes</div>
+        </div>
+        <div class="ui-block ui-block-div ">
+          <div class="ui-block-elem" style="color: #A93737">
+            <div id="totalstrokeswords">0</div>
+          </div>
+          <div class="ui-block-elem-2" style="color: #A93737" id="totalstrokeswordsbottom"></div>
+          <hr style="opacity: .05;;width:100%">
+          <div class="">Total Words</div>
+        </div>
+        <div class="ui-block ui-block-div ">
+          <div class="ui-block-elem " style="color: #F15151">
+            <div id="totalerrorstrokes">0</div>
+          </div>
+          <div class="ui-block-elem-2" style="color: #F15151" id=""></div>
+          <hr style="opacity: .05;;width:100%">
+          <div class="">Error Strokes</div>
+        </div>
+        <div class="ui-block ui-block-div ">
+          <div class="ui-block-elem " style="color: #F15151">
+            <div id="totalerrorstrokesmistakes">0</div>
+          </div>
+          <div class="ui-block-elem-2" style="color: #F15151" id="totalerrorstrokesmistakesbottom"></div>
+          <hr style="opacity: .05;;width:100%">
+          <div class="">Mistakes</div>
+        </div>
+		<div class="ui-block ui-block-div ">
+          <div class="ui-block-elem " style="color: #41ADDA;">
+            <span id="accuracy2">0</span><span style="font-size: 10px;font-weight: bold;">%</span>
+          </div>
+		    <div class="ui-block-elem-2" style="color: #41ADDA;white-space: nowrap;margin: 0px -10px;" id="accuracy2bottom"></div>
+         
+          <hr style="opacity: .05;;width:100%">
+		  <div class="">Accuracy </div>
+        </div>
+        <div class="ui-block ui-block-div ">
+          <div class="ui-block-elem" style="color: #0EAE8A">
+            <div id="totalerrorstrokesmistakesexempted">0</div>
+          </div>
+          <div class="ui-block-elem-2" style="color: #0EAE8A" id="totalerrorstrokesmistakesexemptedbottom"></div>
+          <hr style="opacity: .05;;width:100%">
+          <div class="">Mistakes Exempted</div>
+        </div>
+        <div class="ui-block ui-block-div ">
+          <div class="ui-block-elem " style="color: #F15151">
+            <div id="leftmistakesstrokes">0</div>
+          </div>
+          <div class="ui-block-elem-2" style="color: #F15151" id="leftmistakesstrokesbottom"></div>
+          <hr style="opacity: .05;;width:100%">
+          <div class="">Left Mistakes</div>
+        </div>
+        <div class="ui-block ui-block-div ">
+          <div class="ui-block-elem" style="color: #CE7E0C">
+            <div id="penaltystrokes">0</div>
+          </div>
+          <div class="ui-block-elem-2" style="color: #CE7E0C" id="penaltystrokesbottom"></div>
+          <hr style="opacity: .05;;width:100%">
+          <div class="">Penalty</div>
+        </div>
+        <div class="ui-block ui-block-div ">
+          <div class="ui-block-elem" style="color: #A93737">
+            <div id="totalleftstrokes">0</div>
+          </div>
+          <div class="ui-block-elem-2" style="color: #A93737" id="totalleftstrokesbottom"></div>
+          <hr style="opacity: .05;;width:100%">
+          <div class="">Left Words</div>
+        </div>
+		<div class="ui-block ui-block-div ">
+          <div class="ui-block-elem" style="color:#9e9d24">
+            <div id="netspeedstrokes2">0</div>
+          </div>
+          <div class="ui-block-elem-2" style="color:#9e9d24" id="netspeedstrokesbottom"></div>
+          <hr style="opacity: .05;;width:100%">
+          <div class="">Net Speed</div>
+        </div>
+        <div class="ui-block ui-block-div ">
+          <div class="ui-block-elem " style="color: #546e7a">
+            <span id="netspeedstrokes">0</span><span style="font-size: 10px;font-weight: bold;">WPM</span>
+          </div>
+          <div id="qualify2" style="white-space:nowrap"></div>
+          <hr style="opacity: .05;;width:100%">
+          <div>Typing Speed</div>
+        </div>
+		<div></div>
+		<br>
+		<button style="display:block" id="download2" onclick="ss()">Download</button>
+      </div> 
+	  
+ </div>
+	  
+      <a style="display:block;margin: 0px;text-decoration: none;color:grey;font-family: arial;border-radius:2px;" href="https://www.instagram.com/lovnishofficial" crossorigin>
+      <img src="lovnishverma.png" style="width:90px;margin-top: 10px;" alt="logo">
+      </a>
+      <br>
+
+   <!--  <hr style="width: 100%;opacity: .1;">
+		  <div style="justify-content: center;" >
+		  <p style="font-size:15px">If you liked this project and would like to support me please consider making a donation.</p>
+          <a class="button " href="donate.html">Buy me a coffee?</a> -->
+          </div>
+    </div>
+	<script src="strokes.js"></script> 
+	<script src="html2canvas.js"></script> 
+	<script>
+function downloadURI(uri, name) {
+    var link = document.createElement("a");
+
+    link.download = name;
+    link.href = uri;
+    document.body.appendChild(link);
+    link.click();
+}
+
+function ss() {
+    document.getElementById("logoc").style.display = "block";
+	document.getElementById("cv").style.background = "#dedede";
+	document.getElementById("download").style.display = "none";
+	document.getElementById("download2").style.display = "none";
+	
+    html2canvas(document.getElementById("cv"), {
+    allowTaint: true,
+	
+     // your configurations
+    scale: 2
+}).then(function (canvas) {
+		canvas.allowtaint
+		var myImage = canvas.toDataURL();
+        downloadURI(myImage, "wpmcalculator.html");
+    });
+	 document.getElementById("logoc").style.display = "none";
+	 document.getElementById("cv").style.background = "none";
+	document.getElementById("download").style.display = "block";
+	document.getElementById("download2").style.display = "block";
+	
+	
+}
+	</script>
+  <!-- Cloudflare Pages Analytics --><script defer src='../static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "6737953061ad4dddb5aa1393c7197bff"}'></script><!-- Cloudflare Pages Analytics --></body>
+
+</html>
+

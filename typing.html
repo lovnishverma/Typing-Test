@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+   
+
+<head>
+      <title>TYPING SKILL TEST</title>
+      <meta name="viewport" content="width=1024">
+      <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+      <meta name="robots" content="index, follow" />
+      <meta name="description" content="A software designed to crack HPSSC typing test.">
+      <link rel="canonical" href="index.html" />
+	  <link id="favicon" rel="shortcut icon" href="favicon.png" type="image/png"/>
+	  <link rel="apple-touch-icon" sizes="194x194" href="apple-touch-icon.png" type="image/png"/>
+      <style>
+         html,
+         body {
+         margin: 0;
+         padding: 0;
+         border: 0;
+         width: 100%;
+         height: 100%
+         }
+         textarea {
+         min-width: 500px;
+         max-width: 94.5%;
+         min-height: 63.5%;
+         width: 100%;
+         font-style: normal;
+         font-family: Times New Roman;
+         font-size: 25px;
+         margin: 2% 2% 1%;
+         padding: 5px;
+         resize: none;
+         white-space: pre-wrap;
+         }
+         .h1 {
+         background-color: #002e5b;
+         padding: 2%;
+         color: white;
+         font-family: Lato-Semibold, sans-serif;
+         height: 30px;
+         }
+         .parent {
+         align-items: center;
+         margin: 0 2%
+         }
+         .parent .block {
+         text-align: center;
+         border: 1px black;
+         padding: .8%;
+         border-style: solid;
+         font-size: 15px;
+         }
+         .parent span {
+         text-align: center;
+         }
+         .button {
+         background-color: #04AA6D;
+         border-radius: 5px;
+         font-size: 15px;
+         padding: 2%;
+         color: white;
+         width: auto;
+         border: none;
+         margin-top: 1%;
+         cursor: pointer;
+         }
+         .button2 {
+         background-color: #04AA6D;
+         border-radius: 5px;
+         font-size: 15px;
+         padding: 1% 2%;
+         color: white;
+         width: 15%;
+         border: none;
+         margin-top: 1%;
+         cursor: pointer;
+         }
+         .overlay {
+         height: 100%;
+         width: 100%;
+         display: none;
+         position: fixed;
+         z-index: 1;
+         top: 0;
+         left: 0;
+         background-color: rgb(0, 0, 0);
+         background-color: rgba(0, 0, 0, 0.43);
+         overflow: auto;
+         scrollbar-width: none;
+         }
+         .overlay-content {
+         margin: 20px;
+         text-align: center;
+         background: white;
+         align-content: center;
+         display: grid;
+         }
+         .timer {
+         font-size: 15px;
+         border: 5px solid #004853;
+         display: inline;
+         padding: 1px 5px;
+         color: #004853;
+         font-size: 36px;
+         font-weight: bold;
+         margin: -10px auto;
+         text-decoration: none;
+         background: red;
+         font-family: Verdana, sans-serif, Arial;
+         }
+         .fa-instagram {
+         color: grey
+         }
+         @media only screen and (max-width: 720px) {
+         .parent {
+         display: grid;
+         }
+         .h1 {
+         display: grid;
+         height: 150px;
+         }
+         .countdwn {
+         margin-top: 2%;
+         }
+         textarea{
+         min-width:auto;
+         }
+         }
+         .not-found {
+         color: #F15151;
+         cursor: pointer;
+         }
+         .not-found2 {
+         color: red;
+         cursor: pointer;
+         }
+         .found {
+         color: green;
+         cursor: pointer;
+         }
+         .repeated {
+         color: #F15151;
+         text-decoration: line-through;
+         cursor: pointer;
+         }
+         #result {
+         font-size: 20px;
+         text-align: left;
+         padding: 10px;
+         border: 2px gray solid;
+         }
+         .mas {
+         white-space: pre-wrap;
+         }
+         .ui-flex-container {
+         display: grid;
+         grid-gap: 0px 5px;
+         grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+         align-items: center;
+         }
+         .ui-block-elem {
+         font-family: Lato-Light, sans-serif;
+         font-size: 40px;
+         line-height: 40px;
+         min-width: 40px;
+         height: 40px;
+         margin-bottom: 10px;
+         position: relative;
+         }
+         .ui-block-div {
+         height: 140px;
+         width: 100%;
+         color: #232430;
+         font-family: Lato-Semibold, sans-serif;
+         font-size: 14px;
+         line-height: 17px;
+         padding: 20px 17px;;
+         box-sizing: border-box;
+         text-align: center;
+         flex-grow: 1;
+         display:grid;
+         align-content:center;
+         }
+         .ui-block {
+         border-radius: 12px;
+         background-color: #FFFFFF;
+         box-shadow: 0px 0px 20px 0px rgba(207, 207, 207, 0.6);
+         margin: 3px;
+         }
+         .cart {
+         background-color: #CCC;
+         }
+         #sidebar {
+         display: none;
+         }
+         .not-found:hover ~ #sidebar {
+         display: block;
+         }
+         .noselect {
+         -webkit-touch-callout: none;
+         -webkit-user-select: none;
+         -khtml-user-select: none;
+         -moz-user-select: none;
+         -ms-user-select: none;
+         user-select: none;
+         }
+         .logo{
+         position: relative;font-size: 12px;float: left;display:flex ;align-content: center;text-align: center;margin-right: 2%; margin: -2% 1.5%;
+         }
+         .link{
+         padding:3%;margin: 0px;text-decoration: none;color:grey;border-radius:2px;
+         }
+         .red{
+         color: red;
+         }
+         #qualify{
+         margin-top: -5%;
+         margin-bottom: 8px;
+         font-weight: bold;
+         white-space: nowrap;
+         font-size: 12px;
+         }
+         .logo img{
+         vertical-align: middle;
+         max-height: 60px;
+         }
+         @media only screen and (max-width: 1224px) and (min-width: 767px) {
+         .h1 {
+         height: 50px;
+         }
+         }
+      </style>
+
+   </head>
+   <body onload="sanFunction()">
+      <div style="height:100%">
+         <div class="h1">
+            <div class="logo" >
+               <a class="link" href="https://www.instagram.com/lovnishofficial/"> <img src="logo-typing.svg" height="160px" width="200px" style="margin-top: 8px;margin-left: -25px;" alt="logo"> </a>
+            </div>
+            <div style="float:right;min-width:600px;">
+               <!-- <a style="text-decoration: none;color:#002e5b ;background-color: #fff;;border-radius: 5px;font-family: arial;" class="button" target="_blank" href="donate.html">Buy me a coffee?</a> -->
+             <span>
+                  <select style="padding:2% 13%;" disabled>
+                     <option>English</option>
+                     <option>Hindi</option>
+                  </select>
+               </span>
+               <button class="button" id="myBtn" onclick="displayBlock()">Start Test</button> <a style="text-decoration: none;color:#002e5b ;background-color: #fdd428;;border-radius: 5px;font-family: arial;" class="button" target="_blank" href="strokes.html">Calculate WPM</a> 
+            </div>
+         </div>
+         <br>
+         <div class="parent">
+            <span style="margin-left: -.1%;" class="block">ROLL NO :________ <span id="rollno"></span> </span> <span class="block">NAME :________ <span id="name"></span> </span> <span class="block">SKILL TEST : TYPING TEST </span> <span class="block">TIME : 10 MIN</span> 
+            <div class="countdwn" style="float: right;">
+               <p class="timer" style="display:none;" id="countdown2"></p>
+            </div>
+            <div id="miniCountdown" class="overlay">
+               <div class="overlay-content" style="height:100%" >
+                  <div style="font-size:300px;display:grid; color:red;" id="countdown"></div>
+               </div>
+            </div>
+            <div id="testCompleted" class="overlay">
+               <div class="overlay-content">
+                  <div >
+                     <div style="margin: 40px;">
+                        <span style="font-size:40px;color:#F15151;margin:0;">Test Completed ! </span>
+                        <br>
+                        <i style="font-size: 20px;margin: 10px;font-weight: bold;color:gray">Click on error to remove it.</i>
+                        <p class="mas noselect" id="result" style="font-family: Lato-Semibold, sans-serif;white-space: pre-wrap; min-height:300px;"> </p>
+                        <div class="ui-flex-container">
+                           <div class="ui-block ui-block-div ">
+                              <div class="ui-block-elem" style="color: #A93737">
+                                 <div id="count">0</div>
+                              </div>
+                              <div class="">Mistakes</div>
+                           </div>
+                           <div class="ui-block ui-block-div ">
+                              <div class="ui-block-elem " style="color: #0EAE8A">
+                                 <div id="whitespaces">0</div>
+                              </div>
+                              <div class="">Extra Spaces</div>
+                           </div>
+                           <div class="ui-block ui-block-div ">
+                              <div class="ui-block-elem" style="color: #41ADDA">
+                                 <div id="repeated">0</div>
+                              </div>
+                              <div class="">Repeated Words</div>
+                           </div>
+                           <div class="ui-block ui-block-div ">
+                              <div class="ui-block-elem " style="color: #F15151">
+                                 <div id="totalErrors">0</div>
+                              </div>
+                              <div class="">Total Errors</div>
+                           </div>
+                           <div class="ui-block ui-block-div ">
+                              <div class="ui-block-elem" style="color: #CE7E0C">
+                                 <div id="wordCount">0</div>
+                              </div>
+                              <div class="">Total Words</div>
+                           </div>
+                           <div class="ui-block ui-block-div ">
+                              <div class="ui-block-elem " style="color: #0EAE8A">
+                                 <div id="charNumWithSpace">0</div>
+                              </div>
+                              <div class="">Total Strokes</div>
+                           </div>
+                           <div class="ui-block ui-block-div ">
+                              <div class="ui-block-elem " style="color: #41ADDA">
+                                 <span id="accuracy">0</span><span style="font-size: 10px;font-weight: bold;">%</span>
+                              </div>
+                              <div class="">Accuracy</div>
+                           </div>
+                           <div class="ui-block ui-block-div ">
+                              <div class="ui-block-elem " style="color: #0EAE8A">
+                                 <span id="netspeed">0</span><span style="font-size: 10px;font-weight: bold;">WPM</span>
+                              </div>
+                              <div id="qualify"></div>
+                              <div>Typing Speed</div>
+                           </div>
+                        </div>
+                        <button class="button2" onclick="closeWindow()">Close</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <textarea class="mas" id="txtArea" data-gramm_editor="false" data-gramm="false" onkeyup="countChars(this);" rows="10" cols="45" spellcheck="false" placeholder="Type your text here..." spellcheck=false></textarea>
+         <p style="margin: 0 2%;text-align:center;">This website is made for typing practice only. The interface is made keeping in view of the software used by the Commission. Word dictionary by <a href="https://github.com/dwyl/english-words" >dlwl</a> is used to detect spelling mistakes.</p>
+         <div style="position:relative; font-size:12px; float:left;margin-left:.8%;margin-top: 8px;">
+            <!--<a style="padding: 0 20px;margin: 0px;text-decoration:none;color:grey;" href="https://telegram.me/ChandigarhEvent">
+               FOLLOW ME ON TELEGRAM 
+               <p style="font-size: 10px;margin-left: 10%;
+                  margin-top: 2px;">To get latest updates regarding this software.</p>
+            </a>-->
+            <a style="font-size:15px;" href="https://telegram.me/ChandigarhEvent" ></a>
+         </div>
+         <div style="position: relative;font-size: 12px;float: right;display:flex ;align-content: center;text-align: center;margin-right: 2%; margin: -1% 1.5%;">
+            <a style="padding:3%;margin: 0px;text-decoration: none;color:grey;font-family: arial;border-radius:2px;" href="https://www.instagram.com/lovnishofficial/"> <img src="lovnishverma.png" width="80px" height="40px" style="padding: 5px 20px;margin: 0px;" alt="logo"> </a>
+         </div>
+      </div>
+      <script src="san.js"></script> 
+</body>
+
+</html>

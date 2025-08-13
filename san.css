@@ -1,0 +1,10 @@
+body { font-family: 'Roboto', sans-serif; } .container { max-width: 500px; margin-left: auto; margin-right: auto; padding-left: 10px; padding-right: 10px; } li { border-radius: 3px; padding: 2px 75px; list-style-type: none; } .table-header { background-color: #95A5A6; font-size: 14px; text-transform: uppercase; letter-spacing: 0.03em; } .table-row { background-color: #ffffff; text-align:center; box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1); } .col-1 { display:block; padding:10px; font-size:14px; border-bottom: 2px solid #eeeeee2e; } .san { text-align:center; justify-content:center; display:grid; } .san123{ max-width: 700px; box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px; position: relative; top:0; bottom: 0; left: 0; right: 0; padding-bottom: 40px; margin: auto; } .button { color:#002e5b ; background-color: #fdd428; border-radius: 5px; border-radius: 5px; font-size: 15px; padding: 12px; border: none; margin-top: 1%; cursor: pointer; margin:2%; clear: both; display: inline-block; white-space: nowrap; text-decoration:none; } .button:hover { background-color: #c8ee92; font-weight: 600; }.hide {
+  color: orange;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
