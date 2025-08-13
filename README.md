@@ -43,10 +43,10 @@ It mimics the interface and environment used by official commission software, co
 ├── logo-typing.svg
 ├── logo.svg
 ├── lovnishverma.png
-├── san.css
-├── san.js                  # Main typing logic (obfuscated)
-├── san.json
-├── san.svg
+├── styles.css
+├── script.js                  # Main typing logic (obfuscated)
+├── love.json
+├── love.svg
 ├── strokes.html            # WPM calculator page
 ├── strokes.js
 ├── typing.html
@@ -102,7 +102,7 @@ http://localhost:8000
 
 ## 📄 Notes on Dictionary
 
-* The script (`san.js`) fetches the **`words_dictionary.json`** file for spell-checking.
+* The script (`script.js`) fetches the **`words_dictionary.json`** file for spell-checking.
 * For GitHub Pages hosting, the file must be in the **root directory** (already included in this repo).
 * If running locally, you must use a local server — AJAX requests will fail with `file://` paths due to browser restrictions.
 
