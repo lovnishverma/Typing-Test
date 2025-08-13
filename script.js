@@ -368,7 +368,7 @@ function _0x1ce466(_0x533393, _0xffdd79, _0x1692a0, _0x2a6746) {
 }
 var req2 = new XMLHttpRequest();
 req2.overrideMimeType("application/json");
-req2.open('GET', "san.json", true);
+req2.open('GET', "love.json", true);
 function _0x5acc9a(_0x59a9a4, _0x2c2543, _0x553580, _0x43dd1a) {
   return _0x1d47(_0x59a9a4 - 0x250, _0x43dd1a);
 }
@@ -486,3 +486,4 @@ function displayBlock() {
 function closeNav() {
   document.getElementById("miniCountdown").style.display = "none";
 }
+
