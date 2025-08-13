@@ -10,7 +10,7 @@ It mimics the interface and environment used by official commission software, co
 
 ---
 
-## 📌 Features
+## 📌 Major Features
 
 - **Realistic UI:** Interface designed similar to Government skill test software.
 - **Countdown Timer:** Standard 10-minute test duration with mini countdown start.
