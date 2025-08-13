@@ -5,7 +5,7 @@ It mimics the interface and environment used by official commission software, co
 
 **Live Demo:** [Typing Skill Test](https://lovnishverma.github.io/Typing-Test/)
 
-![Typing Test Screenshot](logo.svg)
+![Typing Test Screenshot](lovnishverma.png)
 
 ---
 
@@ -49,9 +49,9 @@ It mimics the interface and environment used by official commission software, co
 ├── strokes.html            # WPM calculator page
 ├── strokes.js
 ├── typing.html
-├── words\_dictionary.json   # English words list for spell check
+├── words_dictionary.json   # English words list for spell check
 ├── wpmcalculator.html
-└── README.md
+└── README.md              #This File (Documentation)
 
 ````
 
