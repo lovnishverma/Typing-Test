@@ -5,7 +5,8 @@ It mimics the interface and environment used by official commission software, co
 
 **Live Demo:** [Typing Skill Test](https://lovnishverma.github.io/Typing-Test/)
 
-![Typing Test Screenshot](lovnishverma.png)
+<img width="525" height="405" alt="image" src="https://github.com/user-attachments/assets/d048d91d-b983-4e5e-8fd9-93f09bc6a061" />
+
 
 ---
 
@@ -51,7 +52,7 @@ It mimics the interface and environment used by official commission software, co
 ├── typing.html
 ├── words_dictionary.json   # English words list for spell check
 ├── wpmcalculator.html
-└── README.md              #This File (Documentation)
+└── README.md              # This File (Documentation)
 
 ````
 
