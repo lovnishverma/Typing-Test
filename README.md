@@ -5,7 +5,7 @@ It mimics the interface and environment used by official commission software, co
 
 **Live Demo:** [Typing Skill Test](https://lovnishverma.github.io/Typing-Test/)
 
-<img width="525" height="405" alt="image" src="https://github.com/user-attachments/assets/d048d91d-b983-4e5e-8fd9-93f09bc6a061" />
+<img width="691" height="706" alt="image" src="https://github.com/user-attachments/assets/79a7932a-76a4-4274-a4e6-4358a90a0a52" />
 
 
 ---
