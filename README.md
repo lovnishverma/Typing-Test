@@ -120,7 +120,7 @@ This repository is configured for **GitHub Pages**:
 3. Access your site at:
 
    ```
-   https://<your-username>.github.io/Typing-Test/
+   https://lovnishverma.github.io/Typing-Test/
    ```
 
 Already live at:
@@ -136,7 +136,7 @@ Already live at:
 
 ## 📜 License
 
-This project is open-source and available under the [MIT License](LICENSE) (or specify your license).
+This project is open-source and available under the [MIT License](LICENSE)
 
 ---
 
